@@ -72,10 +72,12 @@ export class AppComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService) {
+    this.getHeroes();
+   }
   
   ngOnInit(): void {
-    this.getHeroes();
+    //this.getHeroes();
   }
   
   onSelect(hero: Hero): void {
@@ -83,7 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
 
